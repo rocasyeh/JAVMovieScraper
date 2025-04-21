@@ -4,6 +4,8 @@ import moviescraper.doctord.controller.siteparsingprofile.SiteParsingProfile;
 import moviescraper.doctord.model.SearchResult;
 import moviescraper.doctord.model.dataitem.*;
 import moviescraper.doctord.model.dataitem.Runtime;
+
+import org.jetbrains.annotations.NotNull;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
@@ -284,9 +286,19 @@ public class MissAVParsingProfile extends SiteParsingProfile implements Specific
     }
 
     @Override
+    public String createSearchString2(File file) {
+		return null;
+	}
+
+    @Override
     public String createSearchStringFromId(String id) {
         return "https://missav.ws/en/" + id;
     }
+
+    @Override
+    public String createSearchStringFromId2(String id) {
+		return null;
+	}
 
     @Override
     public SearchResult[] getSearchResults(String searchString) throws IOException {

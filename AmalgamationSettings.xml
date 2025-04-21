@@ -1,0 +1,794 @@
+<hashtable>
+  <entry>
+    <ScraperGroupName>AMERICAN_ADULT_DVD_SCRAPER_GROUP</ScraperGroupName>
+    <ScraperGroupAmalgamationPreferences>
+      <scraperGroupName>AMERICAN_ADULT_DVD_SCRAPER_GROUP</scraperGroupName>
+      <overallOrdering>
+        <amalgamationPreferenceOrder>
+          <moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile>
+            <scrapingLanguage>ENGLISH</scrapingLanguage>
+            <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+            <scrapingPreferences/>
+            <isDisabled>false</isDisabled>
+            <firstWordOfFileIsID>false</firstWordOfFileIsID>
+            <discardResults>false</discardResults>
+            <includeAdult>true</includeAdult>
+            <onlyReturnAdultResults>true</onlyReturnAdultResults>
+            <tmdbKey>f7f51775877e0bb6703520952b3c7840</tmdbKey>
+            <movieImagePathPrefix>https://image.tmdb.org/t/p/original</movieImagePathPrefix>
+            <movieImageThumbnailPathPrefix>https://image.tmdb.org/t/p/w130</movieImageThumbnailPathPrefix>
+            <movieImageFanartThumbnailPathPrefix>https://image.tmdb.org/t/p/w300</movieImageFanartThumbnailPathPrefix>
+            <movieImagePosterThumbnailPathPrefix>https://image.tmdb.org/t/p/w185</movieImagePosterThumbnailPathPrefix>
+          </moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile>
+          <moviescraper.doctord.controller.siteparsingprofile.specific.Data18MovieParsingProfile>
+            <scrapingLanguage>ENGLISH</scrapingLanguage>
+            <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+            <scrapingPreferences reference="../../moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+            <isDisabled>false</isDisabled>
+            <firstWordOfFileIsID>false</firstWordOfFileIsID>
+            <discardResults>false</discardResults>
+            <useSiteSearch>true</useSiteSearch>
+            <yearFromFilename></yearFromFilename>
+            <hasRunScrapeExtraFanart>false</hasRunScrapeExtraFanart>
+          </moviescraper.doctord.controller.siteparsingprofile.specific.Data18MovieParsingProfile>
+          <moviescraper.doctord.controller.siteparsingprofile.specific.ExcaliburFilmsParsingProfile>
+            <scrapingLanguage>ENGLISH</scrapingLanguage>
+            <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+            <scrapingPreferences reference="../../moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+            <isDisabled>false</isDisabled>
+            <firstWordOfFileIsID>false</firstWordOfFileIsID>
+            <discardResults>false</discardResults>
+          </moviescraper.doctord.controller.siteparsingprofile.specific.ExcaliburFilmsParsingProfile>
+          <moviescraper.doctord.controller.siteparsingprofile.specific.IAFDParsingProfile>
+            <scrapingLanguage>ENGLISH</scrapingLanguage>
+            <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+            <scrapingPreferences reference="../../moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+            <isDisabled>false</isDisabled>
+            <firstWordOfFileIsID>false</firstWordOfFileIsID>
+            <discardResults>false</discardResults>
+            <useSiteSearch>true</useSiteSearch>
+          </moviescraper.doctord.controller.siteparsingprofile.specific.IAFDParsingProfile>
+          <moviescraper.doctord.model.dataitem.DefaultDataItemSource>
+            <isDisabled>false</isDisabled>
+          </moviescraper.doctord.model.dataitem.DefaultDataItemSource>
+        </amalgamationPreferenceOrder>
+      </overallOrdering>
+      <customAmalgamationOrderPerField class="hashtable">
+        <entry>
+          <string>actors</string>
+          <moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference>
+            <amalgamationPreferenceOrder>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile>
+                <scrapingLanguage>JAPANESE</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>true</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <includeAdult>true</includeAdult>
+                <onlyReturnAdultResults>true</onlyReturnAdultResults>
+                <tmdbKey>f7f51775877e0bb6703520952b3c7840</tmdbKey>
+                <movieImagePathPrefix>https://image.tmdb.org/t/p/original</movieImagePathPrefix>
+                <movieImageThumbnailPathPrefix>https://image.tmdb.org/t/p/w130</movieImageThumbnailPathPrefix>
+                <movieImageFanartThumbnailPathPrefix>https://image.tmdb.org/t/p/w300</movieImageFanartThumbnailPathPrefix>
+                <movieImagePosterThumbnailPathPrefix>https://image.tmdb.org/t/p/w185</movieImagePosterThumbnailPathPrefix>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.Data18MovieParsingProfile>
+                <scrapingLanguage>JAPANESE</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>true</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <useSiteSearch>true</useSiteSearch>
+                <yearFromFilename></yearFromFilename>
+                <hasRunScrapeExtraFanart>false</hasRunScrapeExtraFanart>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.Data18MovieParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.ExcaliburFilmsParsingProfile>
+                <scrapingLanguage>JAPANESE</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>true</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.ExcaliburFilmsParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.IAFDParsingProfile>
+                <scrapingLanguage>JAPANESE</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>true</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <useSiteSearch>true</useSiteSearch>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.IAFDParsingProfile>
+              <moviescraper.doctord.model.dataitem.DefaultDataItemSource>
+                <isDisabled>false</isDisabled>
+              </moviescraper.doctord.model.dataitem.DefaultDataItemSource>
+            </amalgamationPreferenceOrder>
+          </moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference>
+        </entry>
+      </customAmalgamationOrderPerField>
+    </ScraperGroupAmalgamationPreferences>
+  </entry>
+  <entry>
+    <ScraperGroupName>JAV_CENSORED_SCRAPER_GROUP</ScraperGroupName>
+    <ScraperGroupAmalgamationPreferences>
+      <scraperGroupName>JAV_CENSORED_SCRAPER_GROUP</scraperGroupName>
+      <overallOrdering>
+        <amalgamationPreferenceOrder>
+          <moviescraper.doctord.controller.siteparsingprofile.specific.AV123ParsingProfile>
+            <scrapingLanguage>ENGLISH</scrapingLanguage>
+            <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+            <scrapingPreferences reference="../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+            <isDisabled>true</isDisabled>
+            <firstWordOfFileIsID>false</firstWordOfFileIsID>
+            <discardResults>false</discardResults>
+            <titlePath>html body div#app div#body div#page-video.container div.row div.col div.d-flex.justify-content-between.align-items-start div.mr-3 h1</titlePath>
+            <posterPath>html body div#app div#body div#page-video.container div.row div.col div#player</posterPath>
+            <movieDetailsPath>.content .detail-item</movieDetailsPath>
+            <plotPath>html body div#app div#body div#page-video.container div.row div.col div#details div.content div.description p</plotPath>
+            <movie__data/>
+          </moviescraper.doctord.controller.siteparsingprofile.specific.AV123ParsingProfile>
+          <moviescraper.doctord.controller.siteparsingprofile.specific.AvMooParsingProfile>
+            <scrapingLanguage>ENGLISH</scrapingLanguage>
+            <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+            <scrapingPreferences reference="../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+            <isDisabled>false</isDisabled>
+            <firstWordOfFileIsID>false</firstWordOfFileIsID>
+            <discardResults>false</discardResults>
+          </moviescraper.doctord.controller.siteparsingprofile.specific.AvMooParsingProfile>
+          <moviescraper.doctord.controller.siteparsingprofile.specific.JavBusParsingProfile>
+            <scrapingLanguage>ENGLISH</scrapingLanguage>
+            <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+            <scrapingPreferences reference="../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+            <isDisabled>true</isDisabled>
+            <firstWordOfFileIsID>false</firstWordOfFileIsID>
+            <discardResults>false</discardResults>
+            <isCensoredSearch>true</isCensoredSearch>
+          </moviescraper.doctord.controller.siteparsingprofile.specific.JavBusParsingProfile>
+          <moviescraper.doctord.controller.siteparsingprofile.specific.JavLibraryParsingProfile>
+            <scrapingLanguage>ENGLISH</scrapingLanguage>
+            <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+            <scrapingPreferences reference="../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+            <isDisabled>true</isDisabled>
+            <firstWordOfFileIsID>false</firstWordOfFileIsID>
+            <discardResults>false</discardResults>
+            <siteLanguageToScrape>en</siteLanguageToScrape>
+          </moviescraper.doctord.controller.siteparsingprofile.specific.JavLibraryParsingProfile>
+          <moviescraper.doctord.controller.siteparsingprofile.specific.SquarePlusParsingProfile>
+            <scrapingLanguage>ENGLISH</scrapingLanguage>
+            <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+            <scrapingPreferences reference="../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+            <isDisabled>false</isDisabled>
+            <firstWordOfFileIsID>false</firstWordOfFileIsID>
+            <discardResults>false</discardResults>
+          </moviescraper.doctord.controller.siteparsingprofile.specific.SquarePlusParsingProfile>
+          <moviescraper.doctord.controller.siteparsingprofile.specific.ActionJavParsingProfile>
+            <scrapingLanguage>ENGLISH</scrapingLanguage>
+            <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+            <scrapingPreferences reference="../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+            <isDisabled>false</isDisabled>
+            <firstWordOfFileIsID>false</firstWordOfFileIsID>
+            <discardResults>false</discardResults>
+          </moviescraper.doctord.controller.siteparsingprofile.specific.ActionJavParsingProfile>
+          <moviescraper.doctord.controller.siteparsingprofile.specific.DmmParsingProfile>
+            <scrapingLanguage>ENGLISH</scrapingLanguage>
+            <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+            <scrapingPreferences reference="../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+            <isDisabled>false</isDisabled>
+            <firstWordOfFileIsID>false</firstWordOfFileIsID>
+            <discardResults>false</discardResults>
+            <doGoogleTranslation>true</doGoogleTranslation>
+            <scrapeTrailers>false</scrapeTrailers>
+          </moviescraper.doctord.controller.siteparsingprofile.specific.DmmParsingProfile>
+          <moviescraper.doctord.model.dataitem.DefaultDataItemSource reference="../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.model.dataitem.DefaultDataItemSource"/>
+        </amalgamationPreferenceOrder>
+      </overallOrdering>
+      <customAmalgamationOrderPerField class="hashtable">
+        <entry>
+          <string>studio</string>
+          <moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference>
+            <amalgamationPreferenceOrder>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.JavLibraryParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <siteLanguageToScrape>en</siteLanguageToScrape>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.JavLibraryParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.ActionJavParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.ActionJavParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.AvMooParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.AvMooParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.JavBusParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <isCensoredSearch>true</isCensoredSearch>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.JavBusParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.SquarePlusParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.SquarePlusParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.DmmParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <doGoogleTranslation>true</doGoogleTranslation>
+                <scrapeTrailers>false</scrapeTrailers>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.DmmParsingProfile>
+              <moviescraper.doctord.model.dataitem.DefaultDataItemSource reference="../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.model.dataitem.DefaultDataItemSource"/>
+            </amalgamationPreferenceOrder>
+          </moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference>
+        </entry>
+        <entry>
+          <string>releaseDate</string>
+          <moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference>
+            <amalgamationPreferenceOrder>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.DmmParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <doGoogleTranslation>true</doGoogleTranslation>
+                <scrapeTrailers>false</scrapeTrailers>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.DmmParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.JavLibraryParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <siteLanguageToScrape>en</siteLanguageToScrape>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.JavLibraryParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.ActionJavParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.ActionJavParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.SquarePlusParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.SquarePlusParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.AvMooParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.AvMooParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.JavBusParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <isCensoredSearch>true</isCensoredSearch>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.JavBusParsingProfile>
+              <moviescraper.doctord.model.dataitem.DefaultDataItemSource reference="../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.model.dataitem.DefaultDataItemSource"/>
+            </amalgamationPreferenceOrder>
+          </moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference>
+        </entry>
+        <entry>
+          <string>id</string>
+          <moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference>
+            <amalgamationPreferenceOrder>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.AV123ParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <titlePath>html body div#app div#body div#page-video.container div.row div.col div.d-flex.justify-content-between.align-items-start div.mr-3 h1</titlePath>
+                <posterPath>html body div#app div#body div#page-video.container div.row div.col div#player</posterPath>
+                <movieDetailsPath>.content .detail-item</movieDetailsPath>
+                <plotPath>html body div#app div#body div#page-video.container div.row div.col div#details div.content div.description p</plotPath>
+                <movie__data/>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.AV123ParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.JavLibraryParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <siteLanguageToScrape>en</siteLanguageToScrape>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.JavLibraryParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.ActionJavParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.ActionJavParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.SquarePlusParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.SquarePlusParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.AvMooParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.AvMooParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.JavBusParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <isCensoredSearch>true</isCensoredSearch>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.JavBusParsingProfile>
+              <moviescraper.doctord.model.dataitem.DefaultDataItemSource reference="../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.model.dataitem.DefaultDataItemSource"/>
+            </amalgamationPreferenceOrder>
+          </moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference>
+        </entry>
+        <entry>
+          <string>rating</string>
+          <moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference>
+            <amalgamationPreferenceOrder>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.JavLibraryParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <siteLanguageToScrape>en</siteLanguageToScrape>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.JavLibraryParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.DmmParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <doGoogleTranslation>true</doGoogleTranslation>
+                <scrapeTrailers>false</scrapeTrailers>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.DmmParsingProfile>
+              <moviescraper.doctord.model.dataitem.DefaultDataItemSource reference="../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.model.dataitem.DefaultDataItemSource"/>
+            </amalgamationPreferenceOrder>
+          </moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference>
+        </entry>
+        <entry>
+          <string>runtime</string>
+          <moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference reference="../../entry[2]/moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference"/>
+        </entry>
+        <entry>
+          <string>actors</string>
+          <moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference>
+            <amalgamationPreferenceOrder>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.JavLibraryParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <siteLanguageToScrape>en</siteLanguageToScrape>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.JavLibraryParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.AvMooParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.AvMooParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.JavBusParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <isCensoredSearch>true</isCensoredSearch>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.JavBusParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.ActionJavParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.ActionJavParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.DmmParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <doGoogleTranslation>true</doGoogleTranslation>
+                <scrapeTrailers>false</scrapeTrailers>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.DmmParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.SquarePlusParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.SquarePlusParsingProfile>
+              <moviescraper.doctord.model.dataitem.DefaultDataItemSource reference="../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.model.dataitem.DefaultDataItemSource"/>
+            </amalgamationPreferenceOrder>
+          </moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference>
+        </entry>
+        <entry>
+          <string>trailer</string>
+          <moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference>
+            <amalgamationPreferenceOrder>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.DmmParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <doGoogleTranslation>true</doGoogleTranslation>
+                <scrapeTrailers>false</scrapeTrailers>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.DmmParsingProfile>
+              <moviescraper.doctord.model.dataitem.DefaultDataItemSource reference="../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.model.dataitem.DefaultDataItemSource"/>
+            </amalgamationPreferenceOrder>
+          </moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference>
+        </entry>
+        <entry>
+          <string>fanart</string>
+          <moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference>
+            <amalgamationPreferenceOrder>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.DmmParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <doGoogleTranslation>true</doGoogleTranslation>
+                <scrapeTrailers>false</scrapeTrailers>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.DmmParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.JavLibraryParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <siteLanguageToScrape>en</siteLanguageToScrape>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.JavLibraryParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.ActionJavParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.ActionJavParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.SquarePlusParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.SquarePlusParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.AvMooParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.AvMooParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.JavBusParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <isCensoredSearch>true</isCensoredSearch>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.JavBusParsingProfile>
+              <moviescraper.doctord.model.dataitem.DefaultDataItemSource reference="../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.model.dataitem.DefaultDataItemSource"/>
+            </amalgamationPreferenceOrder>
+          </moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference>
+        </entry>
+        <entry>
+          <string>plot</string>
+          <moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference>
+            <amalgamationPreferenceOrder>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.ActionJavParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.ActionJavParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.DmmParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <doGoogleTranslation>true</doGoogleTranslation>
+                <scrapeTrailers>false</scrapeTrailers>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.DmmParsingProfile>
+              <moviescraper.doctord.model.dataitem.DefaultDataItemSource reference="../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.model.dataitem.DefaultDataItemSource"/>
+            </amalgamationPreferenceOrder>
+          </moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference>
+        </entry>
+        <entry>
+          <string>year</string>
+          <moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference reference="../../entry[2]/moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference"/>
+        </entry>
+        <entry>
+          <string>posters</string>
+          <moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference reference="../../entry[8]/moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference"/>
+        </entry>
+        <entry>
+          <string>title</string>
+          <moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference>
+            <amalgamationPreferenceOrder>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.JavLibraryParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <siteLanguageToScrape>en</siteLanguageToScrape>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.JavLibraryParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.ActionJavParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.ActionJavParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.SquarePlusParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.SquarePlusParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.AvMooParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.AvMooParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.JavBusParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <isCensoredSearch>true</isCensoredSearch>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.JavBusParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.DmmParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <doGoogleTranslation>true</doGoogleTranslation>
+                <scrapeTrailers>false</scrapeTrailers>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.DmmParsingProfile>
+              <moviescraper.doctord.model.dataitem.DefaultDataItemSource reference="../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.model.dataitem.DefaultDataItemSource"/>
+            </amalgamationPreferenceOrder>
+          </moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference>
+        </entry>
+        <entry>
+          <string>originalTitle</string>
+          <moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference>
+            <amalgamationPreferenceOrder>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.DmmParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <doGoogleTranslation>true</doGoogleTranslation>
+                <scrapeTrailers>false</scrapeTrailers>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.DmmParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.JavLibraryParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <siteLanguageToScrape>en</siteLanguageToScrape>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.JavLibraryParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.AvMooParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.AvMooParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.JavBusParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <isCensoredSearch>true</isCensoredSearch>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.JavBusParsingProfile>
+              <moviescraper.doctord.model.dataitem.DefaultDataItemSource reference="../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.model.dataitem.DefaultDataItemSource"/>
+            </amalgamationPreferenceOrder>
+          </moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference>
+        </entry>
+        <entry>
+          <string>genres</string>
+          <moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference>
+            <amalgamationPreferenceOrder>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.JavLibraryParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <siteLanguageToScrape>en</siteLanguageToScrape>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.JavLibraryParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.AvMooParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.AvMooParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.JavBusParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <isCensoredSearch>true</isCensoredSearch>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.JavBusParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.SquarePlusParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.SquarePlusParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.ActionJavParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.ActionJavParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.DmmParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <doGoogleTranslation>true</doGoogleTranslation>
+                <scrapeTrailers>false</scrapeTrailers>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.DmmParsingProfile>
+              <moviescraper.doctord.model.dataitem.DefaultDataItemSource reference="../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.model.dataitem.DefaultDataItemSource"/>
+            </amalgamationPreferenceOrder>
+          </moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference>
+        </entry>
+        <entry>
+          <string>set</string>
+          <moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference>
+            <amalgamationPreferenceOrder>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.AvMooParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.AvMooParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.JavBusParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <isCensoredSearch>true</isCensoredSearch>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.JavBusParsingProfile>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.DmmParsingProfile>
+                <scrapingLanguage>ENGLISH</scrapingLanguage>
+                <extraFanartScrapingEnabled>false</extraFanartScrapingEnabled>
+                <scrapingPreferences reference="../../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.TheMovieDatabaseParsingProfile/scrapingPreferences"/>
+                <isDisabled>false</isDisabled>
+                <firstWordOfFileIsID>false</firstWordOfFileIsID>
+                <discardResults>false</discardResults>
+                <doGoogleTranslation>true</doGoogleTranslation>
+                <scrapeTrailers>false</scrapeTrailers>
+              </moviescraper.doctord.controller.siteparsingprofile.specific.DmmParsingProfile>
+              <moviescraper.doctord.model.dataitem.DefaultDataItemSource reference="../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.model.dataitem.DefaultDataItemSource"/>
+            </amalgamationPreferenceOrder>
+          </moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference>
+        </entry>
+        <entry>
+          <string>directors</string>
+          <moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference>
+            <amalgamationPreferenceOrder>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.JavLibraryParsingProfile reference="../../../../entry[6]/moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.JavLibraryParsingProfile"/>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.AvMooParsingProfile reference="../../../../entry[6]/moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.AvMooParsingProfile"/>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.JavBusParsingProfile reference="../../../../entry[6]/moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.JavBusParsingProfile"/>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.ActionJavParsingProfile reference="../../../../entry[6]/moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.ActionJavParsingProfile"/>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.DmmParsingProfile reference="../../../../entry[6]/moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.DmmParsingProfile"/>
+              <moviescraper.doctord.controller.siteparsingprofile.specific.SquarePlusParsingProfile reference="../../../../entry[6]/moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference/amalgamationPreferenceOrder/moviescraper.doctord.controller.siteparsingprofile.specific.SquarePlusParsingProfile"/>
+              <moviescraper.doctord.model.dataitem.DefaultDataItemSource reference="../../../../../../../entry/ScraperGroupAmalgamationPreferences/overallOrdering/amalgamationPreferenceOrder/moviescraper.doctord.model.dataitem.DefaultDataItemSource"/>
+            </amalgamationPreferenceOrder>
+          </moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference>
+        </entry>
+        <entry>
+          <string>extraFanart</string>
+          <moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference reference="../../entry[8]/moviescraper.doctord.controller.amalgamation.DataItemSourceAmalgamationPreference"/>
+        </entry>
+      </customAmalgamationOrderPerField>
+    </ScraperGroupAmalgamationPreferences>
+  </entry>
+</hashtable>

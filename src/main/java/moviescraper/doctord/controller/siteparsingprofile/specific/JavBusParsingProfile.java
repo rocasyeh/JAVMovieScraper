@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.codec.net.URLCodec;
 import org.apache.commons.lang3.text.WordUtils;
+import org.jetbrains.annotations.NotNull;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -347,13 +348,18 @@ public class JavBusParsingProfile extends SiteParsingProfile implements Specific
 		scrapedMovieFile = file;
 		return createSearchStringFromId(findIDTagFromFile(file, isFirstWordOfFileIsID()));
 	}
+
+	@Override
+	public String createSearchString2(File file) {
+		return null;
+	}
         
-        @Override
-        public String createSearchStringFromId(String Id){
-            URLCodec codec = new URLCodec();
+	@Override
+	public String createSearchStringFromId(String Id) {
+		URLCodec codec = new URLCodec();
 		try {
 			String fileNameURLEncoded = codec.encode(Id);
-			String searchTerm = "http://www.javbus.com/" + getUrlLanguageToUse() + "/search/" + fileNameURLEncoded;
+			String searchTerm = "https://www.javbus.com/" + getUrlLanguageToUse() + "/" + fileNameURLEncoded;
 			return searchTerm;
 
 		} catch (Exception e) {
@@ -361,7 +367,12 @@ public class JavBusParsingProfile extends SiteParsingProfile implements Specific
 			e.printStackTrace();
 		}
 		return null;
-        }
+	}
+
+	@Override
+	public String createSearchStringFromId2(String id) {
+		return null;
+	}
 
 	private String getUrlLanguageToUse() {
 		String urlLanguageToUse = (scrapingLanguage == Language.ENGLISH) ? urlLanguageEnglish : urlLanguageJapanese;

@@ -3,6 +3,7 @@ package moviescraper.doctord.controller.siteparsingprofile.specific;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -11,12 +12,14 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.codec.net.URLCodec;
 import org.apache.commons.lang3.StringUtils;
+import org.jetbrains.annotations.NotNull;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import moviescraper.doctord.controller.languagetranslation.JapaneseCharacter;
+import moviescraper.doctord.controller.languagetranslation.Language;
 import moviescraper.doctord.controller.siteparsingprofile.SiteParsingProfile;
 import moviescraper.doctord.model.SearchResult;
 import moviescraper.doctord.model.dataitem.Actor;
@@ -39,12 +42,15 @@ import moviescraper.doctord.model.dataitem.Title;
 import moviescraper.doctord.model.dataitem.Top250;
 import moviescraper.doctord.model.dataitem.Votes;
 import moviescraper.doctord.model.dataitem.Year;
+import moviescraper.doctord.scraper.DitzyHeadlessBrowser;
 
 import javax.annotation.Nonnull;
 
 public class AvMooParsingProfile extends SiteParsingProfile implements SpecificProfile {
 
-	private static final String siteLanguageToScrape = "en";
+	public static final String urlLanguageEnglish = "en";
+	public static final String urlLanguageJapanese = "ja";
+    private static DitzyHeadlessBrowser browser;
 
 	@Override
 	public List<ScraperGroupName> getScraperGroupNames() {
@@ -62,14 +68,16 @@ public class AvMooParsingProfile extends SiteParsingProfile implements SpecificP
 	}
 
 	@Nonnull
-    @Override
+	@Override
 	public Title scrapeTitle() {
 		Element titleElement = document.select("div.container h3").first();
 		if (titleElement != null) {
-			//remove the ID number off beginning of the title, if it exists (and it usually always does on JavLibrary)
+			// remove the ID number off beginning of the title, if it exists (and it usually
+			// always does on JavLibrary)
 			String titleElementText = titleElement.text().trim();
 			titleElementText = titleElementText.substring(StringUtils.indexOf(titleElementText, " ")).trim();
-			//sometimes this still leaves "- " at the start of the title, so we'll want to get rid of that too
+			// sometimes this still leaves "- " at the start of the title, so we'll want to
+			// get rid of that too
 			if (titleElementText.startsWith("- ")) {
 				titleElementText = titleElementText.replaceFirst(Pattern.quote("- "), "");
 			}
@@ -81,20 +89,22 @@ public class AvMooParsingProfile extends SiteParsingProfile implements SpecificP
 	}
 
 	@Nonnull
-    @Override
+	@Override
 	public OriginalTitle scrapeOriginalTitle() {
 		try {
 			Element titleElement = document.select("div.container h3").first();
 			if (titleElement != null) {
-				//remove the ID number off beginning of the title, if it exists (and it usually always does on JavLibrary)
+				// remove the ID number off beginning of the title, if it exists (and it usually
+				// always does on JavLibrary)
 				String titleElementText = titleElement.text().trim();
 				titleElementText = titleElementText.substring(StringUtils.indexOf(titleElementText, " ")).trim();
-				//sometimes this still leaves "- " at the start of the title, so we'll want to get rid of that too
+				// sometimes this still leaves "- " at the start of the title, so we'll want to
+				// get rid of that too
 				if (titleElementText.startsWith("- ")) {
 					titleElementText = titleElementText.replaceFirst(Pattern.quote("- "), "");
 				}
 
-				//sometimes title is not translated on the english site
+				// sometimes title is not translated on the english site
 				if (JapaneseCharacter.containsJapaneseLetter(titleElementText))
 					return new OriginalTitle(titleElementText);
 
@@ -115,7 +125,7 @@ public class AvMooParsingProfile extends SiteParsingProfile implements SpecificP
 	}
 
 	@Nonnull
-    @Override
+	@Override
 	public SortTitle scrapeSortTitle() {
 		// we don't need any special sort title - that's usually something the
 		// user provides
@@ -123,7 +133,7 @@ public class AvMooParsingProfile extends SiteParsingProfile implements SpecificP
 	}
 
 	@Nonnull
-    @Override
+	@Override
 	public Set scrapeSet() {
 		Element setElement = document.select("div.container p:contains(Series:) ~ p a").first();
 		if (setElement != null) {
@@ -133,26 +143,28 @@ public class AvMooParsingProfile extends SiteParsingProfile implements SpecificP
 	}
 
 	@Nonnull
-    @Override
+	@Override
 	public Rating scrapeRating() {
 		// this site does not have ratings, so just return some default values
 		return Rating.BLANK_RATING;
 	}
 
 	@Nonnull
-    @Override
+	@Override
 	public Year scrapeYear() {
 		return scrapeReleaseDate().getYear();
 	}
 
 	@Nonnull
-    @Override
+	@Override
 	public ReleaseDate scrapeReleaseDate() {
-		Element releaseDateElement = document.select("div.container p:contains(Release Date:), div.container p:contains(發行日期:)").first();
+		Element releaseDateElement = document
+				.select("div.container p:contains(Release Date:), div.container p:contains(發行日期:), div.container p:contains(発売日:)").first();
 		if (releaseDateElement != null) {
 			String releaseDateText = releaseDateElement.text().trim();
 			releaseDateText = releaseDateText.replace("Release Date:", "");
 			releaseDateText = releaseDateText.replace("發行日期:", "");
+			releaseDateText = releaseDateText.replace("発売日:", "");
 			if (releaseDateText != null && releaseDateText.length() > 4)
 				return new ReleaseDate(releaseDateText.trim());
 		}
@@ -160,48 +172,50 @@ public class AvMooParsingProfile extends SiteParsingProfile implements SpecificP
 	}
 
 	@Nonnull
-    @Override
+	@Override
 	public Top250 scrapeTop250() {
 		// This type of info doesn't exist on AvMoo
 		return Top250.BLANK_TOP250;
 	}
 
 	@Nonnull
-    @Override
+	@Override
 	public Votes scrapeVotes() {
-		//This type of info doesn't exist on AvMoo
+		// This type of info doesn't exist on AvMoo
 		return Votes.BLANK_VOTES;
 	}
 
 	@Nonnull
-    @Override
+	@Override
 	public Outline scrapeOutline() {
-		//This type of info doesn't exist on AvMoo
+		// This type of info doesn't exist on AvMoo
 		return Outline.BLANK_OUTLINE;
 	}
 
 	@Nonnull
-    @Override
+	@Override
 	public Plot scrapePlot() {
-		//This type of info doesn't exist on AvMoo
+		// This type of info doesn't exist on AvMoo
 		return Plot.BLANK_PLOT;
 	}
 
 	@Nonnull
-    @Override
+	@Override
 	public Tagline scrapeTagline() {
-		//This type of info doesn't exist on AvMoo
+		// This type of info doesn't exist on AvMoo
 		return Tagline.BLANK_TAGLINE;
 	}
 
 	@Nonnull
-    @Override
+	@Override
 	public Runtime scrapeRuntime() {
-		Element runtimeElement = document.select("div.container p:contains(Length:)").first();
+		Element runtimeElement = document.select("div.container p:contains(Length:), div.container p:contains(収録時間:)").first();
 		if (runtimeElement != null) {
 			String lengthText = runtimeElement.text().trim();
 			lengthText = lengthText.replaceFirst(Pattern.quote("Length: "), "");
 			lengthText = lengthText.replaceFirst(Pattern.quote("min"), "");
+			lengthText = lengthText.replaceFirst(Pattern.quote("収録時間: "), "");
+			lengthText = lengthText.replaceFirst(Pattern.quote("分"), "");
 			if (lengthText.length() > 0) {
 				return new Runtime(lengthText);
 			}
@@ -226,7 +240,7 @@ public class AvMooParsingProfile extends SiteParsingProfile implements SpecificP
 			String posterLink = posterElement.attr("src").trim();
 			try {
 				if (doCrop)
-					//posterThumbs[0] = new Thumb(posterLink, 52.7, 0, 0, 0);
+					// posterThumbs[0] = new Thumb(posterLink, 52.7, 0, 0, 0);
 					posterThumbs[0] = new Thumb(posterLink, true);
 				else
 					posterThumbs[0] = new Thumb(posterLink);
@@ -241,25 +255,26 @@ public class AvMooParsingProfile extends SiteParsingProfile implements SpecificP
 	}
 
 	@Nonnull
-    @Override
+	@Override
 	public MPAARating scrapeMPAA() {
 		return MPAARating.RATING_XXX;
 	}
 
 	@Nonnull
-    @Override
+	@Override
 	public ID scrapeID() {
-		Element idElement = document.select("div.container p:contains(ID:)").first();
+		Element idElement = document.select("div.container p:contains(ID:), div.container p:contains(品番:)").first();
 		if (idElement != null) {
 			String idText = idElement.text().trim();
 			idText = idText.replaceFirst(Pattern.quote("ID: "), "");
+			idText = idText.replaceFirst(Pattern.quote("品番: "), "");
 			return new ID(idText);
 		} else
 			return ID.BLANK_ID;
 	}
 
 	@Nonnull
-    @Override
+	@Override
 	public ArrayList<Genre> scrapeGenres() {
 		Elements genreElements = document.select(".genre");
 		if (genreElements != null) {
@@ -273,7 +288,7 @@ public class AvMooParsingProfile extends SiteParsingProfile implements SpecificP
 	}
 
 	@Nonnull
-    @Override
+	@Override
 	public ArrayList<Actor> scrapeActors() {
 		Elements actorElements = document.select("div#avatar-waterfall a.avatar-box");
 		if (actorElements != null) {
@@ -281,13 +296,15 @@ public class AvMooParsingProfile extends SiteParsingProfile implements SpecificP
 			for (Element currentActor : actorElements) {
 				String actorName = currentActor.select("span").first().text().trim();
 				String actorThumbURL = currentActor.select("img").first().attr("src");
-				//we want the full resolution thumbnail, so replace the "medium" from the URL to get it
-				//actorThumbURL = actorThumbURL.replaceFirst(Pattern.quote("/medium/"), "/");
+				// we want the full resolution thumbnail, so replace the "medium" from the URL
+				// to get it
+				// actorThumbURL = actorThumbURL.replaceFirst(Pattern.quote("/medium/"), "/");
 				try {
-					//we can add the actor with their thumbnail so long as we aren't using a placeholder image
+					// we can add the actor with their thumbnail so long as we aren't using a
+					// placeholder image
 					if (!actorThumbURL.contains("nowprinting.gif")) {
 						actorList.add(new Actor(actorName, "", new Thumb(actorThumbURL)));
-					} else //otherwise add the actor without an image
+					} else // otherwise add the actor without an image
 					{
 						actorList.add(new Actor(actorName, "", null));
 					}
@@ -302,7 +319,7 @@ public class AvMooParsingProfile extends SiteParsingProfile implements SpecificP
 	}
 
 	@Nonnull
-    @Override
+	@Override
 	public ArrayList<Director> scrapeDirectors() {
 		Element directorElement = document.select("div.row.movie p:contains(Director:)").first();
 		if (directorElement != null) {
@@ -316,31 +333,36 @@ public class AvMooParsingProfile extends SiteParsingProfile implements SpecificP
 	}
 
 	@Nonnull
-    @Override
+	@Override
 	public Studio scrapeStudio() {
-		Element studioElement = document.select("div.row.movie p:contains(Studio:) ~ p a").first();
+		Element studioElement = document.select("div.row.movie p:contains(Studio:) ~ p a, div.row.movie p:contains(メーカー:) ~ p a").first();
 		if (studioElement != null) {
 			String studioText = studioElement.text().trim();
 			studioText = studioText.replaceFirst(Pattern.quote("Studio: "), "");
+			studioText = studioText.replaceFirst(Pattern.quote("メーカー: "), "");
 			return new Studio(studioText);
 		} else
 			return Studio.BLANK_STUDIO;
 	}
 
 	@Nonnull
-    @Override
+	@Override
 	public String createSearchString(File file) {
 		scrapedMovieFile = file;
 		return createSearchStringFromId(findIDTagFromFile(file, isFirstWordOfFileIsID()));
 	}
-        
-        @Override
-        public String createSearchStringFromId(String Id){
-            URLCodec codec = new URLCodec();
+
+	@Override
+	public String createSearchString2(File file) {
+		return null;
+	}
+
+	@Override
+	public String createSearchStringFromId(String Id) {
+		URLCodec codec = new URLCodec();
 		try {
 			String fileNameURLEncoded = codec.encode(Id);
-			//			String searchTerm = "http://www.javdog.com/" + siteLanguageToScrape + "/search/" + fileNameURLEncoded;
-			String searchTerm = "http://avmoo.online/" + siteLanguageToScrape + "/search/" + fileNameURLEncoded;
+			String searchTerm = "https://avmoo.website/" + getUrlLanguageToUse() + "/search/" + fileNameURLEncoded;
 
 			return searchTerm;
 
@@ -349,39 +371,71 @@ public class AvMooParsingProfile extends SiteParsingProfile implements SpecificP
 			e.printStackTrace();
 		}
 		return null;
-        }
+	}
+
+	@Override
+	public String createSearchStringFromId2(String id) {
+		return null;
+	}
+
+	private String getUrlLanguageToUse() {
+		String urlLanguageToUse = (scrapingLanguage == Language.ENGLISH) ? urlLanguageEnglish : urlLanguageJapanese;
+		return urlLanguageToUse;
+	}
 
 	@Override
 	public SearchResult[] getSearchResults(String searchString) throws IOException {
 		LinkedList<SearchResult> linksList = new LinkedList<>();
 		try {
-			Document doc = Jsoup.connect(searchString).userAgent("Mozilla").ignoreHttpErrors(true).timeout(SiteParsingProfile.CONNECTION_TIMEOUT_VALUE).get();
+			Document doc = Jsoup.connect(searchString).userAgent("Mozilla").ignoreHttpErrors(true)
+					.timeout(SiteParsingProfile.CONNECTION_TIMEOUT_VALUE).get();
 			{
-				Elements divVideoLinksElements = doc.select("div.item:has(a[href*=/movie/])");
-
-				for (Element currentDivVideoLink : divVideoLinksElements) {
-					Element videoLinksElements = currentDivVideoLink.select("a[href*=/movie/]").last();
-					String idFromSearchResult = currentDivVideoLink.select("span").first().text();
-					String currentLink = videoLinksElements.attr("href");
-					if(!currentLink.startsWith("http")){
-						currentLink = "https:" + currentLink;
+				String movieUrl = null;
+				Element movieBoxElement = doc.select("a.movie-box").first();
+				if (movieBoxElement != null) {
+					// Extract the href attribute
+					movieUrl = movieBoxElement.attr("href");
+					// Ensure the URL is absolute
+					if (!movieUrl.startsWith("http")) {
+						movieUrl = "https:" + movieUrl;
 					}
-					String currentLabel = idFromSearchResult + " " + videoLinksElements.text();
-					String currentThumb = currentDivVideoLink.select("img").first().attr("src");
-
-					if (currentLink.length() > 1) {
-						SearchResult searchResult = new SearchResult(currentLink, currentLabel, new Thumb(currentThumb));
-
-						//maybe we can improve search accuracy by putting our suspected best match at the front of the array
-						//we do this by examining the ID from the search result and seeing if it was in our initial search string
-						if (searchString.contains(idFromSearchResult) || searchString.contains(idFromSearchResult.replaceAll(Pattern.quote("-"), "")))
-							linksList.addFirst(searchResult);
-						else
-							linksList.addLast(searchResult);
-					}
+					System.out.println("Parsed Movie URL: " + movieUrl);
+				} else {
+					System.out.println("Movie URL not found.");
 				}
 
-				return linksList.toArray(new SearchResult[linksList.size()]);
+				var result = new SearchResult(movieUrl);
+				return new SearchResult[]{result};
+
+				// Elements divVideoLinksElements = doc.select("div.item:has(a[href*=/movie/])");
+
+				// for (Element currentDivVideoLink : divVideoLinksElements) {
+				// 	Element videoLinksElements = currentDivVideoLink.select("a[href*=/movie/]").last();
+				// 	String idFromSearchResult = currentDivVideoLink.select("span").first().text();
+				// 	String currentLink = videoLinksElements.attr("href");
+				// 	if (!currentLink.startsWith("http")) {
+				// 		currentLink = "https:" + currentLink;
+				// 	}
+				// 	String currentLabel = idFromSearchResult + " " + videoLinksElements.text();
+				// 	String currentThumb = currentDivVideoLink.select("img").first().attr("src");
+
+				// 	if (currentLink.length() > 1) {
+				// 		SearchResult searchResult = new SearchResult(currentLink, currentLabel,
+				// 				new Thumb(currentThumb));
+
+				// 		// maybe we can improve search accuracy by putting our suspected best match at
+				// 		// the front of the array
+				// 		// we do this by examining the ID from the search result and seeing if it was in
+				// 		// our initial search string
+				// 		if (searchString.contains(idFromSearchResult)
+				// 				|| searchString.contains(idFromSearchResult.replaceAll(Pattern.quote("-"), "")))
+				// 			linksList.addFirst(searchResult);
+				// 		else
+				// 			linksList.addLast(searchResult);
+				// 	}
+				// }
+
+				// return linksList.toArray(new SearchResult[linksList.size()]);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

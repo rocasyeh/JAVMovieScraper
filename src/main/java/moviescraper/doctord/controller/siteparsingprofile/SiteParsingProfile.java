@@ -358,8 +358,10 @@ public abstract class SiteParsingProfile implements DataItemSource {
 	public abstract @NotNull Studio scrapeStudio();
 
 	public abstract @NotNull String createSearchString(File file);
+	public abstract @NotNull String createSearchString2(File file);
         
     public abstract String createSearchStringFromId(String id);
+    public abstract String createSearchStringFromId2(String id);
 
 	public @NotNull Trailer scrapeTrailer() {
 		return Trailer.BLANK_TRAILER;

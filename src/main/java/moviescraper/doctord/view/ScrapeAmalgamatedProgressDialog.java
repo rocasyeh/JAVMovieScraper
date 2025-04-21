@@ -425,8 +425,22 @@ public class ScrapeAmalgamatedProgressDialog extends JDialog implements Runnable
 		if (chooseSearchResult && !wasCustomURLSet) {
 			System.out.println("Prompt user for search results for " + siteScraper);
 			String searchString = siteScraper.createSearchString(fileToScrape);
+			String searchString2 = siteScraper.createSearchString2(fileToScrape);
 			try {
-				SearchResult[] searchResults = siteScraper.getSearchResults(searchString);
+				SearchResult[] searchResults = null;
+				SearchResult[] searchResults1 = siteScraper.getSearchResults(searchString);
+				SearchResult[] searchResults2 = siteScraper.getSearchResults(searchString2);
+				if (searchResults1 != null && searchResults2 != null) {
+					SearchResult[] combinedResults = new SearchResult[searchResults1.length + searchResults2.length];
+					System.arraycopy(searchResults1, 0, combinedResults, 0, searchResults1.length);
+					System.arraycopy(searchResults2, 0, combinedResults, searchResults1.length, searchResults2.length);
+					searchResults = combinedResults;
+				} else if (searchResults1 != null) {
+					searchResults = searchResults1;
+				} else {
+					searchResults = searchResults2;
+				}
+
 				if (searchResults != null && searchResults.length > 0) {
 					SearchResult searchResultFromUser = this.showSearchResultPicker(searchResults, siteScraper.getDataItemSourceName());
 					if (searchResultFromUser != null) {

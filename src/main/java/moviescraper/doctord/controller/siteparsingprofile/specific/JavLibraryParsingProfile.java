@@ -14,6 +14,7 @@ import moviescraper.doctord.scraper.DitzyHeadlessBrowserSingle;
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.net.URLCodec;
 import org.apache.commons.lang3.StringUtils;
+import org.jetbrains.annotations.NotNull;
 import org.jsoup.Connection;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -382,22 +383,49 @@ public class JavLibraryParsingProfile extends SiteParsingProfile implements Spec
 		scrapedMovieFile = file;
                 return createSearchStringFromId(findIDTagFromFile(file, isFirstWordOfFileIsID()));
 	}
-        
-        @Override
-        public String createSearchStringFromId(String id){
-            URLCodec codec = new URLCodec();
-		try {
-			String fileNameURLEncoded = codec.encode(id);
-			String searchTerm = "http://www.javlibrary.com/" + siteLanguageToScrape + "/vl_searchbyid.php?keyword=" + fileNameURLEncoded;
 
-			return searchTerm;
-
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	@Override
+	public String createSearchString2(File file) {
 		return null;
-        }
+	}
+        
+	@Override
+	public String createSearchStringFromId(String id){
+		URLCodec codec = new URLCodec();
+	try {
+		String fileNameURLEncoded = codec.encode(id);
+		String searchTerm = "https://www.javlibrary.com/" + siteLanguageToScrape + "/vl_searchbyid.php?keyword=" + fileNameURLEncoded;
+		
+		System.out.println("searchTerm: " + searchTerm);
+
+		var response = browser.get(new URL(searchTerm));
+		System.out.println("response: " + response.statusCode());
+
+		String ret = "";
+		if (response != null) {
+			Document doc = response.parse();
+			Map<String, String> headers = response.headers();
+			
+			System.out.println("headers " + headers);
+			// if (doc.location() != null) {
+			// 	ret = "https://www.javlibrary.com/" + siteLanguageToScrape + doc.location().replace(".", "");
+			// }
+		}
+
+		System.out.println("ret: " + ret);
+		return ret;
+
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return null;
+	}
+
+	@Override
+	public String createSearchStringFromId2(String id) {
+		return null;
+	}
 
 	@Override
 	public SearchResult[] getSearchResults(String searchString) throws IOException {

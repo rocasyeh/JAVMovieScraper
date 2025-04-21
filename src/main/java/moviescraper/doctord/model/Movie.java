@@ -119,32 +119,175 @@ public class Movie {
 	public Movie(SiteParsingProfile siteToScrapeFrom, GUIMain parent) {
 		title = siteToScrapeFrom.scrapeTitle();
 
-		originalTitle = siteToScrapeFrom.scrapeOriginalTitle();
-		sortTitle = siteToScrapeFrom.scrapeSortTitle();
-		set = siteToScrapeFrom.scrapeSet();
-		rating = siteToScrapeFrom.scrapeRating();
-		year = siteToScrapeFrom.scrapeYear();
-		top250 = siteToScrapeFrom.scrapeTop250();
-		trailer = siteToScrapeFrom.scrapeTrailer();
-		votes = siteToScrapeFrom.scrapeVotes();
-		outline = siteToScrapeFrom.scrapeOutline();
-		plot = siteToScrapeFrom.scrapePlot();
-		tagline = siteToScrapeFrom.scrapeTagline();
-		studio = siteToScrapeFrom.scrapeStudio();
-		releaseDate = siteToScrapeFrom.scrapeReleaseDate();
-		runtime = siteToScrapeFrom.scrapeRuntime();
-		posters = siteToScrapeFrom.scrapePosters(parent.getFileDetailPanel().cropPosters());
-		if(posters[0].hasDerivations())
-			posters[0] = posters[0].derivedChild();
+		try {
+			originalTitle = siteToScrapeFrom.scrapeOriginalTitle();
+		} catch (Exception e) {
+			System.out.println("Fail to scrapeOriginalTitle");
+			System.out.println(e);
+		}
 
-		fanart = siteToScrapeFrom.scrapeFanart();
-		extraFanart = siteToScrapeFrom.scrapeExtraFanart();
-		mpaa = siteToScrapeFrom.scrapeMPAA();
-		id = siteToScrapeFrom.scrapeID();
-		actors = siteToScrapeFrom.scrapeActors();
-		genres = siteToScrapeFrom.scrapeGenres();
-		tags = siteToScrapeFrom.scrapeTags();
-		directors = siteToScrapeFrom.scrapeDirectors();
+		try {
+			sortTitle = siteToScrapeFrom.scrapeSortTitle();
+		} catch (Exception e) {
+			System.out.println("Fail to scrapeSortTitle");
+			System.out.println(e);
+		}
+
+		try {
+			set = siteToScrapeFrom.scrapeSet();
+		} catch (Exception e) {
+			System.out.println("Fail to scrapeSet");
+			System.out.println(e);
+		}
+
+		try {
+			rating = siteToScrapeFrom.scrapeRating();
+		} catch (Exception e) {
+			System.out.println("Fail to scrapeRating");
+			System.out.println(e);
+		}
+
+		try {
+			year = siteToScrapeFrom.scrapeYear();
+		} catch (Exception e) {
+			System.out.println("Fail to scrapeYear");
+			System.out.println(e);
+		}
+
+		try {
+			top250 = siteToScrapeFrom.scrapeTop250();
+		} catch (Exception e) {
+			System.out.println("Fail to scrapeTop250");
+			System.out.println(e);
+		}
+
+		try {
+			trailer = siteToScrapeFrom.scrapeTrailer();
+		} catch (Exception e) {
+			System.out.println("Fail to scrapeTrailer");
+			System.out.println(e);
+		}
+
+		try {
+			votes = siteToScrapeFrom.scrapeVotes();
+		} catch (Exception e) {
+			System.out.println("Fail to scrapeVotes");
+			System.out.println(e);
+		}
+
+		try {
+			outline = siteToScrapeFrom.scrapeOutline();
+		} catch (Exception e) {
+			System.out.println("Fail to scrapeOutline");
+			System.out.println(e);
+		}
+
+		try {
+			plot = siteToScrapeFrom.scrapePlot();
+		} catch (Exception e) {
+			System.out.println("Fail to scrapePlot");
+			System.out.println(e);
+		}
+
+		try {
+			tagline = siteToScrapeFrom.scrapeTagline();
+		} catch (Exception e) {
+			System.out.println("Fail to scrapeTagline");
+			System.out.println(e);
+		}
+
+		try {
+			studio = siteToScrapeFrom.scrapeStudio();
+		} catch (Exception e) {
+			System.out.println("Fail to scrapeStudio");
+			System.out.println(e);
+		}
+
+		try {
+			releaseDate = siteToScrapeFrom.scrapeReleaseDate();
+		} catch (Exception e) {
+			System.out.println("Fail to scrapeReleaseDate");
+			System.out.println(e);
+		}
+
+		try {
+			runtime = siteToScrapeFrom.scrapeRuntime();
+		} catch (Exception e) {
+			System.out.println("Fail to scrapeRuntime");
+			System.out.println(e);
+		}
+
+		try {
+			posters = siteToScrapeFrom.scrapePosters(parent.getFileDetailPanel().cropPosters());
+			if (posters != null && posters.length > 0 && posters[0] != null) {
+				if (posters[0].hasDerivations()) {
+					posters[0] = posters[0].derivedChild();
+				}
+			} else {
+				System.out.println("Warning: posters is null or empty after scrapePosters/cropPosters");
+			}
+		} catch (Exception e) {
+			System.out.println("Fail to scrapePosters");
+			System.out.println(e);
+			posters = new Thumb[0];
+		}
+
+		try {
+			fanart = siteToScrapeFrom.scrapeFanart();
+		} catch (Exception e) {
+			System.out.println("Fail to scrapeFanart");
+			System.out.println(e);
+			fanart = new Thumb[0];
+		}
+
+		try {
+			extraFanart = siteToScrapeFrom.scrapeExtraFanart();
+		} catch (Exception e) {
+			System.out.println("Fail to scrapeExtraFanart");
+			System.out.println(e);
+		}
+
+		try {
+			mpaa = siteToScrapeFrom.scrapeMPAA();
+		} catch (Exception e) {
+			System.out.println("Fail to scrapeMPAA");
+			System.out.println(e);
+		}
+
+		try {
+			id = siteToScrapeFrom.scrapeID();
+		} catch (Exception e) {
+			System.out.println("Fail to scrapeID");
+			System.out.println(e);
+		}
+
+		try {
+			actors = siteToScrapeFrom.scrapeActors();
+		} catch (Exception e) {
+			System.out.println("Fail to scrapeActors");
+			System.out.println(e);
+		}
+
+		try {
+			genres = siteToScrapeFrom.scrapeGenres();
+		} catch (Exception e) {
+			System.out.println("Fail to scrapeGenres");
+			System.out.println(e);
+		}
+
+		try {
+			tags = siteToScrapeFrom.scrapeTags();
+		} catch (Exception e) {
+			System.out.println("Fail to scrapeTags");
+			System.out.println(e);
+		}
+		
+		try {
+			directors = siteToScrapeFrom.scrapeDirectors();
+		} catch (Exception e) {
+			System.out.println("Fail to scrapeDirectors");
+			System.out.println(e);
+		}
 
 		setAllDataItemSources(siteToScrapeFrom);
 
@@ -818,34 +961,51 @@ public class Movie {
 	 */
 
 	//Version that allows us to update the GUI while scraping
-	public static Movie scrapeMovie(File movieFile, SiteParsingProfile siteToParseFrom, String urlToScrapeFromDMM, boolean useURLtoScrapeFrom, GUIMain parent) throws IOException {
+	public static Movie scrapeMovie(File movieFile, SiteParsingProfile siteToScrapeFrom, String urlToScrapeFromDMM, boolean useURLtoScrapeFrom, GUIMain parent) throws IOException {
 
 		//If the user manually canceled the results on this scraper in a dialog box, just return a null movie
-		if (siteToParseFrom.getDiscardResults())
+		if (siteToScrapeFrom.getDiscardResults())
 			return null;
 
-		String searchString;
+		String searchString1;
+		String searchString2;
 		FileDetailPanel panel = null;
 		if(parent != null){
 			panel = parent.getFileDetailPanel();
 		}
 
 		if(panel != null && panel.shouldOverrideInferredId() && !panel.inferredId().equals("N/A")){
-			searchString = siteToParseFrom.createSearchStringFromId(panel.inferredId());
+			searchString1 = siteToScrapeFrom.createSearchStringFromId(panel.inferredId());
+			searchString2 = siteToScrapeFrom.createSearchStringFromId2(panel.inferredId());
 		} else {
-			searchString = siteToParseFrom.createSearchString(movieFile);
+			searchString1 = siteToScrapeFrom.createSearchString(movieFile);
+			searchString2 = siteToScrapeFrom.createSearchString2(movieFile);
 		}
 		SearchResult[] searchResults = null;
 		int searchResultNumberToUse = 0;
+		
+		System.out.println("Debug#1");
 		//no URL was passed in so we gotta figure it ourselves
 		if (!useURLtoScrapeFrom) {
-			searchResults = siteToParseFrom.getSearchResults(searchString);
+			SearchResult[] searchResults1 = siteToScrapeFrom.getSearchResults(searchString1);
+			SearchResult[] searchResults2 = siteToScrapeFrom.getSearchResults(searchString2);
+			if (searchResults1 != null && searchResults2 != null) {
+				SearchResult[] combinedResults = new SearchResult[searchResults1.length + searchResults2.length];
+				System.arraycopy(searchResults1, 0, combinedResults, 0, searchResults1.length);
+				System.arraycopy(searchResults2, 0, combinedResults, searchResults1.length, searchResults2.length);
+				searchResults = combinedResults;
+			} else if (searchResults1 != null) {
+				searchResults = searchResults1;
+			} else {
+				searchResults = searchResults2;
+			}
+
 			int levDistanceOfCurrentMatch = 999999; // just some super high number
 			String idFromMovieFile;
 			if(panel != null && panel.shouldOverrideInferredId() && (!panel.inferredId().isEmpty() || !panel.inferredId().equals("N/A")))
 				idFromMovieFile = panel.inferredId();
 			else
-				idFromMovieFile = SiteParsingProfile.findIDTagFromFile(movieFile, siteToParseFrom.isFirstWordOfFileIsID());
+				idFromMovieFile = SiteParsingProfile.findIDTagFromFile(movieFile, siteToScrapeFrom.isFirstWordOfFileIsID());
 
 
 			if(panel != null && !panel.shouldOverrideInferredId())
@@ -873,20 +1033,22 @@ public class Movie {
 		}
 		//just use the URL to parse from the parameter
 		else if (useURLtoScrapeFrom) {
+			System.out.println("Debug#2.2");
 			searchResults = new SearchResult[1];
 
-			if (siteToParseFrom instanceof DmmParsingProfile)
+			if (siteToScrapeFrom instanceof DmmParsingProfile) {
 				searchResults[0] = new SearchResult(urlToScrapeFromDMM);
-			else if (siteToParseFrom instanceof Data18MovieParsingProfile || siteToParseFrom instanceof Data18WebContentParsingProfile)
+			} else if (siteToScrapeFrom instanceof Data18MovieParsingProfile || siteToScrapeFrom instanceof Data18WebContentParsingProfile) {
 				searchResults[0] = new SearchResult(urlToScrapeFromDMM);
-			else if (siteToParseFrom instanceof JavLibraryParsingProfile)
-				searchResults[0] = new SearchResult(((JavLibraryParsingProfile) siteToParseFrom).getOverrideURLJavLibrary());
-			else if (siteToParseFrom instanceof IAFDParsingProfile)
+			} else if (siteToScrapeFrom instanceof JavLibraryParsingProfile) {
+				searchResults[0] = new SearchResult(((JavLibraryParsingProfile) siteToScrapeFrom).getOverrideURLJavLibrary());
+			} else if (siteToScrapeFrom instanceof IAFDParsingProfile) {
 				searchResults[0] = new SearchResult(urlToScrapeFromDMM);
+			}
 
 			//override any of the above if we have specifically set an override url
-			if (siteToParseFrom.getOverridenSearchResult() != null) {
-				searchResults[0] = siteToParseFrom.getOverridenSearchResult();
+			if (siteToScrapeFrom.getOverridenSearchResult() != null) {
+				searchResults[0] = siteToScrapeFrom.getOverridenSearchResult();
 				searchResultNumberToUse = 0;
 			}
 
@@ -895,7 +1057,7 @@ public class Movie {
 			System.out.println("Scraping this webpage for movie: " + searchResults[searchResultNumberToUse].getUrlPath());
 			//for now just set the movie to the first thing found unless we found a link which had something close to the ID
 			SearchResult searchResultToUse = searchResults[searchResultNumberToUse];
-			var response = siteToParseFrom.downloadDocument(searchResultToUse);
+			var response = siteToScrapeFrom.downloadDocument(searchResultToUse);
 			if(response == null || response.statusCode() != 200 || response.statusCode() > 399){
 				if(response != null) {
 					System.err.println("Failed to connect to: " + searchResultToUse.getUrlPath());
@@ -910,17 +1072,17 @@ public class Movie {
 			Document searchMatch = response.parse();
 
 			//Handle any captchas etc that prevent us from getting our result
-			if (searchMatch != null && SecurityPassthrough.class.isAssignableFrom(siteToParseFrom.getClass())) {
-				SecurityPassthrough siteParsingProfileSecurityPassthrough = (SecurityPassthrough) siteToParseFrom;
+			if (searchMatch != null && SecurityPassthrough.class.isAssignableFrom(siteToScrapeFrom.getClass())) {
+				SecurityPassthrough siteParsingProfileSecurityPassthrough = (SecurityPassthrough) siteToScrapeFrom;
 				if (siteParsingProfileSecurityPassthrough.requiresSecurityPassthrough(searchMatch)) {
 					searchMatch = siteParsingProfileSecurityPassthrough.runSecurityPassthrough(searchMatch, searchResultToUse);
 				}
 			}
-			siteToParseFrom.setDocument(searchMatch);
-            siteToParseFrom.prepareData();
-			siteToParseFrom.setOverrideURLDMM(urlToScrapeFromDMM);
+			siteToScrapeFrom.setDocument(searchMatch);
+            siteToScrapeFrom.prepareData();
+			siteToScrapeFrom.setOverrideURLDMM(urlToScrapeFromDMM);
 
-			Movie scrapedMovie = new Movie(siteToParseFrom, parent);
+			Movie scrapedMovie = new Movie(siteToScrapeFrom, parent);
 			return scrapedMovie;
 		} else //no movie match found
 		{
