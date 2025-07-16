@@ -388,7 +388,7 @@ public class AvMooParsingProfile extends SiteParsingProfile implements SpecificP
 					URLCodec codec = new URLCodec();
 					if(!currentLink.startsWith("http")){
 						try {
-							currentLink = "https:" + linkPrefixPath + "/" + codec.encode(linkToken);
+							currentLink = "http:" + linkPrefixPath + "/" + codec.encode(linkToken);
 						} catch (EncoderException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
