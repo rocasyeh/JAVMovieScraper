@@ -374,15 +374,16 @@ public class Thumb extends MovieDataItem {
 
 	public static boolean fileExistsAtUrl(String URLName) {
 		try {
-			HttpURLConnection.setFollowRedirects(false);
-			// note : you may also need
-			//        HttpURLConnection.setInstanceFollowRedirects(false)
 			HttpURLConnection con = (HttpURLConnection) new URL(URLName).openConnection();
 			con.setRequestMethod("HEAD");
+			con.setConnectTimeout(5000);
+			con.setReadTimeout(5000);
+			con.setRequestProperty("User-Agent", "Mozilla/5.0");
 			con.setInstanceFollowRedirects(true);
-			return (con.getResponseCode() == HttpURLConnection.HTTP_OK);
+			int rc = con.getResponseCode();
+			return (rc == HttpURLConnection.HTTP_OK);
 		} catch (Exception e) {
-			e.printStackTrace();
+			// Don't spam logs for simple missing URLs; return false on error
 			return false;
 		}
 	}
