@@ -317,7 +317,7 @@ public class AV123ParsingProfile extends SiteParsingProfile implements SpecificP
     @Override
     public String createSearchStringFromId(String id) {
         this.id = id;
-        return "https://123av.com/" + getUrlLanguageToUse() + "/dm3/v/" + id;
+        return "https://123av.com/" + getUrlLanguageToUse() + "/v/" + id;
     }
     @Override
     public String createSearchStringFromId2(String id) {

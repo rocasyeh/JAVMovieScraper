@@ -1,4 +1,4 @@
-package moviescraper.doctord.controller.amalgamation.test;
+package moviescraper.doctord.controller.amalgamation;
 
 import static org.junit.Assert.assertEquals;
 
