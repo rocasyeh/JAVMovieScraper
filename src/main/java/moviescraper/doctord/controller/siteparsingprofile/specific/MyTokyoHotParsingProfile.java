@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.text.WordUtils;
+import org.jetbrains.annotations.NotNull;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -368,6 +369,18 @@ public class MyTokyoHotParsingProfile extends SiteParsingProfile implements Spec
 	@Override
 	public SiteParsingProfile newInstance() {
 		return new MyTokyoHotParsingProfile();
+	}
+
+	@Override
+	public @NotNull String createSearchString2(File file) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'createSearchString2'");
+	}
+
+	@Override
+	public String createSearchStringFromId2(String id) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'createSearchStringFromId2'");
 	}
 
 }

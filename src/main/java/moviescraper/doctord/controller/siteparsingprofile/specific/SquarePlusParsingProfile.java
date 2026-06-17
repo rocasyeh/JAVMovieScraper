@@ -34,6 +34,7 @@ import moviescraper.doctord.model.dataitem.Votes;
 import moviescraper.doctord.model.dataitem.Year;
 
 import org.apache.commons.lang3.StringUtils;
+import org.jetbrains.annotations.NotNull;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -343,6 +344,18 @@ public class SquarePlusParsingProfile extends SiteParsingProfile implements Spec
 	@Override
 	public String getParserName() {
 		return "SquarePlus";
+	}
+
+	@Override
+	public @NotNull String createSearchString2(File file) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'createSearchString2'");
+	}
+
+	@Override
+	public String createSearchStringFromId2(String id) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'createSearchStringFromId2'");
 	}
 
 }

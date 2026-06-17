@@ -40,6 +40,7 @@ import moviescraper.doctord.scraper.UserAgent;
 import org.apache.commons.codec.EncoderException;
 import org.apache.commons.codec.net.URLCodec;
 import org.apache.commons.io.FilenameUtils;
+import org.jetbrains.annotations.NotNull;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -688,5 +689,17 @@ public class Data18WebContentParsingProfile extends SiteParsingProfile implement
 	@Override
 	public Document runSecurityPassthrough(Document document, SearchResult originalSearchResult) {
 		return Data18SharedMethods.runSecurityPassthrough(document, originalSearchResult);
+	}
+
+	@Override
+	public @NotNull String createSearchString2(File file) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'createSearchString2'");
+	}
+
+	@Override
+	public String createSearchStringFromId2(String id) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'createSearchStringFromId2'");
 	}
 }

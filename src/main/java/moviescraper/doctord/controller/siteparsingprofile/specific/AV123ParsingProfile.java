@@ -18,16 +18,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AV123ParsingProfile extends SiteParsingProfile implements SpecificProfile {
 
 	public static final String urlLanguageEnglish = "en";
 	public static final String urlLanguageJapanese = "ja";
 
-    final String titlePath = "html body div#app div#body div#page-video.container div.row div.col div.d-flex.justify-content-between.align-items-start div.mr-3 h1";
-    final String posterPath = "html body div#app div#body div#page-video.container div.row div.col div#player";
-    final String movieDetailsPath = ".content .detail-item";
-    final String plotPath = "html body div#app div#body div#page-video.container div.row div.col div#details div.content div.description p";
+    final String titlePath = "h1.watch__title";
+    final String posterPath = ".player";
+    final String plotPath = "p.watch__desc-text";
+    String movieDetailsPath = ".content .detail-item"; // kept for XStream backward compatibility
+    final String watchInfoPath = "dl.watch__info";
     Map<String, Element> movie_data = new HashMap<>();
     String id, url;
     Document japaneseDocument;
@@ -38,14 +41,20 @@ public class AV123ParsingProfile extends SiteParsingProfile implements SpecificP
         if(message != null){
             System.err.println(message.text());
         } else {
-            Element table = document.select(movieDetailsPath).first();
-            if (table != null) {
-                for (Element data : table.children()) {
-                    movie_data.put(data.firstElementChild().text(), data.lastElementChild());
+            Element infoList = document.selectFirst(watchInfoPath);
+            if (infoList != null) {
+                for (Element row : infoList.select(".watch__info-row")) {
+                    Element dt = row.selectFirst("dt");
+                    Element dd = row.selectFirst("dd");
+                    if (dt != null && dd != null) {
+                        movie_data.put(normalizeKey(dt.text()), dd);
+                    }
                 }
             }
         }
     }
+
+    private static final Pattern BACKGROUND_IMAGE_STYLE_PATTERN = Pattern.compile("background-image\\s*:\\s*url\\(['\"]?(.*?)['\"]?\\)");
 
     private void initializeJapaneseDocument(){
         try {
@@ -59,6 +68,24 @@ public class AV123ParsingProfile extends SiteParsingProfile implements SpecificP
             System.err.println(e.getMessage());
         }
 
+    }
+
+    private String extractPosterUrlFromStyle(String style) {
+        if (style == null) {
+            return null;
+        }
+        Matcher matcher = BACKGROUND_IMAGE_STYLE_PATTERN.matcher(style);
+        if (matcher.find()) {
+            return matcher.group(1);
+        }
+        return null;
+    }
+
+    private String normalizeKey(String key) {
+        if (key == null) {
+            return null;
+        }
+        return key.trim().replaceAll("[:：]$", "");
     }
 
     @Override
@@ -110,7 +137,7 @@ public class AV123ParsingProfile extends SiteParsingProfile implements SpecificP
     @Nonnull
     @Override
     public Set scrapeSet() {
-		String keyword = (scrapingLanguage == Language.ENGLISH)? "Series:" : "シリーズ:";
+        String keyword = (scrapingLanguage == Language.ENGLISH)? "Series" : "シリーズ";
         if(movie_data.containsKey(keyword)){
             return new Set(movie_data.get(keyword).text());
         }
@@ -127,7 +154,7 @@ public class AV123ParsingProfile extends SiteParsingProfile implements SpecificP
     @Nonnull
     @Override
     public ReleaseDate scrapeReleaseDate() {
-		String keyword = (scrapingLanguage == Language.ENGLISH)? "Release date:" : "リリース日:";
+        String keyword = (scrapingLanguage == Language.ENGLISH)? "Release date" : "発売日";
         if(movie_data.containsKey(keyword)){
             return new ReleaseDate(movie_data.get(keyword).text());
         }
@@ -181,24 +208,11 @@ public class AV123ParsingProfile extends SiteParsingProfile implements SpecificP
     @Nonnull
     @Override
     public Runtime scrapeRuntime() {
-		String keyword = (scrapingLanguage == Language.ENGLISH)? "Runtime:" : "再生時間:";
+        String keyword = (scrapingLanguage == Language.ENGLISH)? "Duration" : "再生時間";
         if(movie_data.containsKey(keyword)){
-            try {
-                Element durationElement = movie_data.get(keyword);
-                if (durationElement != null) {
-                    String[] durationSplitByTimeUnit = durationElement.text().split(":");
-                    if (durationSplitByTimeUnit.length != 3) {
-                        throw new IllegalArgumentException("Invalid number of parts");
-                    }
-                    int hours = Integer.parseInt(durationSplitByTimeUnit[0]);
-                    int minutes = Integer.parseInt(durationSplitByTimeUnit[1]);
-                    // we don't care about seconds
-
-                    int totalMinutes = (hours * 60) + minutes;
-                    return new Runtime(Integer.toString(totalMinutes));
-                }
-            }catch (Exception e){
-                System.err.println(e.getMessage());
+            Element durationElement = movie_data.get(keyword);
+            if (durationElement != null) {
+                return new Runtime(durationElement.text());
             }
         }
         return Runtime.BLANK_RUNTIME;
@@ -210,7 +224,13 @@ public class AV123ParsingProfile extends SiteParsingProfile implements SpecificP
         try {
             Element poster = document.select(posterPath).first();
             if (poster != null) {
-                posters.add(new Thumb(poster.attr("data-poster"), cropPosters));
+                String posterUrl = extractPosterUrlFromStyle(poster.attr("style"));
+                if (posterUrl == null || posterUrl.isBlank()) {
+                    posterUrl = poster.attr("data-poster");
+                }
+                if (posterUrl != null && !posterUrl.isBlank()) {
+                    posters.add(new Thumb(posterUrl, cropPosters));
+                }
             }
         }catch (IOException e){
             System.err.println(e.getMessage());
@@ -224,7 +244,13 @@ public class AV123ParsingProfile extends SiteParsingProfile implements SpecificP
         try {
             Element poster = document.select(posterPath).first();
             if (poster != null) {
-                posters.add(new Thumb(poster.attr("data-poster")));
+                String posterUrl = extractPosterUrlFromStyle(poster.attr("style"));
+                if (posterUrl == null || posterUrl.isBlank()) {
+                    posterUrl = poster.attr("data-poster");
+                }
+                if (posterUrl != null && !posterUrl.isBlank()) {
+                    posters.add(new Thumb(posterUrl));
+                }
             }
         }catch (IOException e){
             System.err.println(e.getMessage());
@@ -246,21 +272,40 @@ public class AV123ParsingProfile extends SiteParsingProfile implements SpecificP
     @Nonnull
     @Override
     public ID scrapeID() {
-		String keyword = (scrapingLanguage == Language.ENGLISH)? "Code:" : "コード:";
+        String keyword = (scrapingLanguage == Language.ENGLISH)? "Code" : "コード";
         if(movie_data.containsKey(keyword)){
             return new ID(movie_data.get(keyword).text());
         }
         return ID.BLANK_ID;
     }
 
+    private ArrayList<String> collectChipTexts(Element element) {
+        ArrayList<String> values = new ArrayList<>();
+        if (element == null) {
+            return values;
+        }
+        for (Element chip : element.select("a.chip")) {
+            if (chip != null && !chip.text().isBlank()) {
+                values.add(chip.text().trim());
+            }
+        }
+        if (values.isEmpty()) {
+            String text = element.text().trim();
+            if (!text.isEmpty()) {
+                values.add(text);
+            }
+        }
+        return values;
+    }
+
     @Nonnull
     @Override
     public ArrayList<Genre> scrapeGenres() {
         ArrayList<Genre> genres = new ArrayList<>();
-		String keyword = (scrapingLanguage == Language.ENGLISH)? "Genres:" : "ジャンル:";
+        String keyword = (scrapingLanguage == Language.ENGLISH)? "Genres" : "ジャンル";
         if(movie_data.containsKey(keyword)){
-            for(Element genre : movie_data.get(keyword).children()){
-                genres.add(new Genre(genre.text()));
+            for(String genreText : collectChipTexts(movie_data.get(keyword))){
+                genres.add(new Genre(genreText));
             }
         }
         return genres;
@@ -270,10 +315,14 @@ public class AV123ParsingProfile extends SiteParsingProfile implements SpecificP
     @Override
     public ArrayList<Actor> scrapeActors() {
         ArrayList<Actor> actresses = new ArrayList<>();
-		String keyword = (scrapingLanguage == Language.ENGLISH)? "Actresses:" : "女優:";
+        String keyword = (scrapingLanguage == Language.ENGLISH)? "Cast" : "出演者";
         if(movie_data.containsKey(keyword)){
-            for(Element actress : movie_data.get(keyword).children()){
-               actresses.add(new Actor(actress.text(), null, null));
+            for(String actressText : collectChipTexts(movie_data.get(keyword))){
+               actresses.add(new Actor(actressText, null, null));
+            }
+        } else if (scrapingLanguage == Language.ENGLISH && movie_data.containsKey("Actresses")) {
+            for(String actressText : collectChipTexts(movie_data.get("Actresses"))){
+               actresses.add(new Actor(actressText, null, null));
             }
         }
         return actresses;
@@ -289,11 +338,11 @@ public class AV123ParsingProfile extends SiteParsingProfile implements SpecificP
     @Nonnull
     @Override
     public Studio scrapeStudio() {
-		String keyword = (scrapingLanguage == Language.ENGLISH)? "Maker:" : "メーカー:";
+        String keyword = (scrapingLanguage == Language.ENGLISH)? "Maker" : "メーカー";
         if(movie_data.containsKey(keyword)){
             return new Studio(movie_data.get(keyword).text());
         } else {
-            keyword = (scrapingLanguage == Language.ENGLISH)? "Label:" : "ラベル:";
+            keyword = (scrapingLanguage == Language.ENGLISH)? "Label" : "ラベル";
             if (movie_data.containsKey(keyword)) {
                 return new Studio(movie_data.get(keyword).text());
             }
@@ -350,9 +399,9 @@ public class AV123ParsingProfile extends SiteParsingProfile implements SpecificP
     @Override
     public ArrayList<Tag> scrapeTags(){
         ArrayList<Tag> tags = new ArrayList<>();
-		String keyword = (scrapingLanguage == Language.ENGLISH)? "Tags:" : "タグ:";
+        String keyword = (scrapingLanguage == Language.ENGLISH)? "Tags" : "タグ";
         if(movie_data.containsKey(keyword)){
-            for(var tag : movie_data.get(keyword).children()){
+            for(Element tag : movie_data.get(keyword).select("a.chip")){
                 tags.add(new Tag(tag.text()));
             }
         }

@@ -265,4 +265,16 @@ public class TenMusumeParsingProfile extends SiteParsingProfileJSON implements S
         }
         return null;
     }
+
+    @Override
+    public @NotNull String createSearchString2(File file) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'createSearchString2'");
+    }
+
+    @Override
+    public String createSearchStringFromId2(String id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'createSearchStringFromId2'");
+    }
 }

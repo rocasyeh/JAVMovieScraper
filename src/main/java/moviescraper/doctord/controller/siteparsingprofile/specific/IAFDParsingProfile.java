@@ -13,6 +13,7 @@ import org.apache.commons.codec.EncoderException;
 import org.apache.commons.codec.net.URLCodec;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.jetbrains.annotations.NotNull;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -402,6 +403,18 @@ public class IAFDParsingProfile extends SiteParsingProfile implements SpecificPr
 		System.out.println("selector = " + selector);
 		Element sidebarElement = document.select(selector).first();
 		return sidebarElement;
+	}
+
+	@Override
+	public @NotNull String createSearchString2(File file) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'createSearchString2'");
+	}
+
+	@Override
+	public String createSearchStringFromId2(String id) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'createSearchStringFromId2'");
 	}
 
 }

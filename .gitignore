@@ -1,8 +1,43 @@
-.gradle
-.idea
-build
-AmalgamationSettings.json
-settings.xml
-JAVMovieScraper.iml
-/.*-gradle/
-gradle.properties
+# ============================================
+# IDE 和編輯器設定
+# ============================================
+.idea/                    # IntelliJ IDEA 設定
+.vscode/                  # VS Code 設定
+.classpath                # Eclipse 類別路徑設定
+.project                  # Eclipse 專案檔案
+.settings/                # Eclipse 設定目錄
+JAVMovieScraper.iml       # IntelliJ IDEA 模組檔案
+
+# ============================================
+# 建構輸出和依賴
+# ============================================
+target/                   # Maven 編譯輸出目錄
+build/                    # Gradle 編譯輸出目錄
+.gradle/                  # Gradle 快取目錄
+/.*-gradle/               # Gradle 暫時目錄
+
+# ============================================
+# 專案設定檔
+# ============================================
+gradle.properties         # Gradle 設定屬性
+settings.xml              # Maven 使用者設定
+AmalgamationSettings.json # 專案特定設定
+
+# ============================================
+# 日誌和暫時檔案
+# ============================================
+*.log                     # 應用程式日誌檔案
+temp_*.py                 # 暫時 Python 指令碼
+
+# ============================================
+# 編輯器暫時檔案
+# ============================================
+*.swp                     # Vim 交換檔案
+*.swo                     # Vim 備份檔案
+*.tmp                     # 暫時檔案
+
+# ============================================
+# 系統檔案
+# ============================================
+.DS_Store                 # macOS 資料夾設定
+Thumbs.db                 # Windows 縮圖資料庫

@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
 import moviescraper.doctord.scraper.UserAgent;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
+import org.jetbrains.annotations.NotNull;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -317,6 +318,18 @@ public class ActionJavParsingProfile extends SiteParsingProfile implements Speci
 	@Override
 	public String getParserName() {
 		return "ActionJav";
+	}
+
+	@Override
+	public @NotNull String createSearchString2(File file) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'createSearchString2'");
+	}
+
+	@Override
+	public String createSearchStringFromId2(String id) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'createSearchStringFromId2'");
 	}
 
 }

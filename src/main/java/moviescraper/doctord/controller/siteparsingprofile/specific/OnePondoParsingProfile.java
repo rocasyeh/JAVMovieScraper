@@ -11,6 +11,8 @@ import java.util.regex.Pattern;
 
 import moviescraper.doctord.controller.languagetranslation.Language;
 import org.apache.commons.io.FilenameUtils;
+import org.jetbrains.annotations.NotNull;
+
 import moviescraper.doctord.controller.siteparsingprofile.SiteParsingProfile;
 import moviescraper.doctord.controller.siteparsingprofile.SiteParsingProfileJSON;
 import moviescraper.doctord.model.SearchResult;
@@ -377,6 +379,18 @@ public class OnePondoParsingProfile extends SiteParsingProfileJSON implements Sp
 	@Override
 	public SiteParsingProfile newInstance() {
 		return new OnePondoParsingProfile();
+	}
+
+	@Override
+	public @NotNull String createSearchString2(File file) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'createSearchString2'");
+	}
+
+	@Override
+	public String createSearchStringFromId2(String id) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'createSearchStringFromId2'");
 	}
 
 }

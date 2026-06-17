@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 import moviescraper.doctord.controller.languagetranslation.Language;
 import org.apache.commons.io.FilenameUtils;
+import org.jetbrains.annotations.NotNull;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
@@ -290,6 +291,18 @@ public class Kin8tengokuParsingProfile extends SiteParsingProfile implements Spe
 	@Override
 	public SiteParsingProfile newInstance() {
 		return new Kin8tengokuParsingProfile();
+	}
+
+	@Override
+	public @NotNull String createSearchString2(File file) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'createSearchString2'");
+	}
+
+	@Override
+	public String createSearchStringFromId2(String id) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'createSearchStringFromId2'");
 	}
 
 }
