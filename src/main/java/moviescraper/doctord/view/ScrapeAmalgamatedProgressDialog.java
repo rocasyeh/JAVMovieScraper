@@ -442,15 +442,7 @@ public class ScrapeAmalgamatedProgressDialog extends JDialog implements Runnable
 				}
 
 				if (searchResults != null && searchResults.length > 0) {
-					SearchResult searchResultFromUser = this.showSearchResultPicker(searchResults, siteScraper.getDataItemSourceName());
-					if (searchResultFromUser != null) {
-						siteScraper.setOverridenSearchResult(searchResultFromUser.getUrlPath());
-						wasCustomURLSet = true;
-					} else {
-						//User hit cancel, do not scrape from this scraper
-						System.out.println("Discarding results from " + siteScraper.getDataItemSourceName());
-						siteScraper.setDiscardResults(true);
-					}
+					wasCustomURLSet = this.showSearchResultPicker(searchResults, siteScraper);
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -462,24 +454,54 @@ public class ScrapeAmalgamatedProgressDialog extends JDialog implements Runnable
 	}
 
 	/**
-	 * Display a list of option dialog where the user can choose between various search results
-	 * 
+	 * Display a list of option dialog where the user can choose between various search results,
+	 * or load a locally saved HTML page via the "Provide HTML File" button.
+	 *
 	 * @param searchResults - search results to display
-	 * @param siteName - Title to show in window
-	 * @return - the search result the user picks or null if the user picks the cancel option
+	 * @param siteScraper - the scraper the results belong to; its overridden search result / document is set here
+	 * @return true if the user provided a custom source (URL or local HTML file), false otherwise
 	 */
-	public SearchResult showSearchResultPicker(SearchResult[] searchResults, String siteName) {
+	public boolean showSearchResultPicker(SearchResult[] searchResults, SiteParsingProfile siteScraper) {
 		if (searchResults.length > 0) {
-
+			String siteName = siteScraper.getDataItemSourceName();
 			SelectionDialog selectionDialog = new SelectionDialog(searchResults, siteName);
 			Object[] choices = { "OK", "Skip Scraping From This Site" };
 			Object defaultChoice = choices[0];
 			int optionPicked = JOptionPane.showOptionDialog(this, selectionDialog, "Select Search Result for " + siteName, JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, choices,
 			        defaultChoice);
-			if (optionPicked == JOptionPane.CANCEL_OPTION)
-				return null;
-			return selectionDialog.getSelectedValue();
-		} else
-			return null;
+
+			//The user chose to scrape from a locally saved HTML file instead of a search result URL.
+			File providedHtmlFile = selectionDialog.getProvidedHtmlFile();
+			if (providedHtmlFile != null) {
+				try {
+					siteScraper.setOverriddenDocumentFromFile(providedHtmlFile);
+					System.out.println("Scraping " + siteName + " from local HTML file: " + providedHtmlFile);
+					return true;
+				} catch (IOException e) {
+					JOptionPane.showMessageDialog(this, "Could not read the selected HTML file:\n" + e.getMessage(), "Error reading file", JOptionPane.ERROR_MESSAGE);
+					e.printStackTrace();
+					siteScraper.setDiscardResults(true);
+					return false;
+				}
+			}
+
+			if (optionPicked == JOptionPane.CANCEL_OPTION) {
+				System.out.println("Discarding results from " + siteName);
+				siteScraper.setDiscardResults(true);
+				return false;
+			}
+
+			SearchResult searchResultFromUser = selectionDialog.getSelectedValue();
+			if (searchResultFromUser != null) {
+				siteScraper.setOverridenSearchResult(searchResultFromUser.getUrlPath());
+				return true;
+			}
+
+			//User hit cancel / picked nothing, do not scrape from this scraper
+			System.out.println("Discarding results from " + siteName);
+			siteScraper.setDiscardResults(true);
+			return false;
+		}
+		return false;
 	}
 }

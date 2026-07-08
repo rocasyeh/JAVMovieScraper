@@ -967,6 +967,16 @@ public class Movie {
 		if (siteToScrapeFrom.getDiscardResults())
 			return null;
 
+		//If the user provided a locally saved HTML page for this scraper, use it directly and skip
+		//downloading (useful for sites behind bot challenges like Cloudflare).
+		if (siteToScrapeFrom.getOverriddenDocument() != null) {
+			System.out.println("Scraping from user-provided local HTML document for " + siteToScrapeFrom.getParserName());
+			siteToScrapeFrom.setDocument(siteToScrapeFrom.getOverriddenDocument());
+			siteToScrapeFrom.prepareData();
+			siteToScrapeFrom.setOverrideURLDMM(urlToScrapeFromDMM);
+			return new Movie(siteToScrapeFrom, parent);
+		}
+
 		String searchString1;
 		String searchString2;
 		FileDetailPanel panel = null;

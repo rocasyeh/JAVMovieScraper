@@ -1,11 +1,15 @@
 package moviescraper.doctord.controller.siteparsingprofile.specific;
 
+import moviescraper.doctord.controller.languagetranslation.Language;
 import moviescraper.doctord.controller.siteparsingprofile.SiteParsingProfile;
 import moviescraper.doctord.model.SearchResult;
 import moviescraper.doctord.model.dataitem.*;
 import moviescraper.doctord.model.dataitem.Runtime;
+import moviescraper.doctord.scraper.UserAgent;
 
-import org.jetbrains.annotations.NotNull;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
@@ -17,13 +21,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MissAVParsingProfile extends SiteParsingProfile implements SpecificProfile {
+
+    public static final String urlLanguageEnglish = "en";
+    public static final String urlLanguageJapanese = "ja";
+
     final String titleTablePath = "div.space-y-2";
     final String titlePath = "h1.text-base";
     final String notFoundpath = "p.text-4xl.font-extrabold.text-primary";
     final String plotTextPath = "div.mb-1";
     final String posterImg = "video.player";
-    final String durtationPath = "/html/body/div[2]/div[3]/div/div[2]/div[1]/div[1]/div/div/div[1]/div[3]";
     Map<String, Element> movie_data = new HashMap<>();
+
+    String id, url;
+    Document japaneseDocument;
 
     @Override
     public void prepareData(){
@@ -34,16 +44,79 @@ public class MissAVParsingProfile extends SiteParsingProfile implements Specific
             Element table = document.select(titleTablePath).first();
             if(table != null){
                 for(Element data : table.children()){
+                    if(data.firstElementChild() == null){
+                        continue;
+                    }
                     switch (data.firstElementChild().text()){
+                        // Multi-value fields (contain multiple <a> links) keep the whole row element
                         case "Genre:":
+                        case "ジャンル:":
                         case "Actors:":
+                        case "Actor:":
+                        case "俳優:":
                         case "Actress:":
-                        case "Tags:": movie_data.put(data.firstElementChild().text(), data); break;
-                        default: movie_data.put(data.firstElementChild().text(), data.lastElementChild()); break;
+                        case "女優:":
+                        case "Tags:":
+                        case "タグ:":
+                            movie_data.put(data.firstElementChild().text(), data);
+                            break;
+                        default:
+                            movie_data.put(data.firstElementChild().text(), data.lastElementChild());
+                            break;
                     }
                 }
             }
         }
+    }
+
+    private String getUrlLanguageToUse() {
+        return (scrapingLanguage == Language.ENGLISH) ? urlLanguageEnglish : urlLanguageJapanese;
+    }
+
+    private void initializeJapaneseDocument(){
+        try {
+            String japaneseUrl;
+            if (id != null) {
+                japaneseUrl = "https://missav.ws/dm32/" + urlLanguageJapanese + "/" + id;
+            } else if (url != null) {
+                japaneseUrl = url.replace("/" + urlLanguageEnglish + "/", "/" + urlLanguageJapanese + "/");
+            } else {
+                return;
+            }
+            var response = downloadDocumentFromUrl(japaneseUrl).bufferUp();
+            if (response.statusCode() == 200) {
+                japaneseDocument = response.parse();
+            }
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public Connection.Response downloadDocumentFromUrl(String url) {
+        try {
+            var response = Jsoup.connect(url)
+                    .userAgent(UserAgent.getRandomUserAgent())
+                    // MissAV rejects requests that don't look like a real browser (returns 403),
+                    // so send the same headers a browser would.
+                    .header("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8")
+                    .header("Accept-Language", "ja,en-US;q=0.9,en;q=0.8")
+                    .header("Sec-Fetch-Dest", "document")
+                    .header("Sec-Fetch-Mode", "navigate")
+                    .header("Sec-Fetch-Site", "none")
+                    .header("Sec-Fetch-User", "?1")
+                    .header("Upgrade-Insecure-Requests", "1")
+                    .referrer("https://missav.ws/")
+                    .followRedirects(true)
+                    .ignoreHttpErrors(true)
+                    .timeout(CONNECTION_TIMEOUT_VALUE)
+                    .execute();
+            this.url = response.url().toString();
+            return response;
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+        return null;
     }
 
     @Nonnull
@@ -59,11 +132,11 @@ public class MissAVParsingProfile extends SiteParsingProfile implements Specific
     @Nonnull
     @Override
     public OriginalTitle scrapeOriginalTitle() {
-        // TODO: Fix for chinese media titles
-        if(movie_data.containsKey("Title:")){
-            Element origTitle = movie_data.get("Title:");
-            if(origTitle != null){
-                return new OriginalTitle(origTitle.text());
+        initializeJapaneseDocument();
+        if(japaneseDocument != null){
+            Element japaneseTitle = japaneseDocument.select(titlePath).first();
+            if(japaneseTitle != null && !japaneseTitle.text().isBlank()){
+                return new OriginalTitle(japaneseTitle.text());
             }
         }
         return OriginalTitle.BLANK_ORIGINALTITLE;
@@ -78,8 +151,9 @@ public class MissAVParsingProfile extends SiteParsingProfile implements Specific
     @Nonnull
     @Override
     public Set scrapeSet() {
-        if(movie_data.containsKey("Series:")){
-            Element series = movie_data.get("Series:");
+        String keyword = (scrapingLanguage == Language.ENGLISH) ? "Series:" : "シリーズ:";
+        if(movie_data.containsKey(keyword)){
+            Element series = movie_data.get(keyword);
             if(series != null){
                 return new Set(series.text());
             }
@@ -96,8 +170,9 @@ public class MissAVParsingProfile extends SiteParsingProfile implements Specific
     @Nonnull
     @Override
     public ReleaseDate scrapeReleaseDate() {
-        if(movie_data.containsKey("Release date:")){
-            Element date = movie_data.get("Release date:");
+        String keyword = (scrapingLanguage == Language.ENGLISH) ? "Release date:" : "配信開始日:";
+        if(movie_data.containsKey(keyword)){
+            Element date = movie_data.get(keyword);
             if(date != null){
                 return new ReleaseDate(date.text());
             }
@@ -214,8 +289,9 @@ public class MissAVParsingProfile extends SiteParsingProfile implements Specific
     @Nonnull
     @Override
     public ID scrapeID() {
-        if(movie_data.containsKey("Code:")){
-            Element code = movie_data.get("Code:");
+        String keyword = (scrapingLanguage == Language.ENGLISH) ? "Code:" : "品番:";
+        if(movie_data.containsKey(keyword)){
+            Element code = movie_data.get(keyword);
             if(code != null){
                 return new ID(code.text());
             }
@@ -227,8 +303,9 @@ public class MissAVParsingProfile extends SiteParsingProfile implements Specific
     @Override
     public ArrayList<Genre> scrapeGenres() {
         ArrayList<Genre> genres = new ArrayList<>();
-        if(movie_data.containsKey("Genre:")){
-            for(Element genre : movie_data.get("Genre:").getElementsByTag("a")){
+        String keyword = (scrapingLanguage == Language.ENGLISH) ? "Genre:" : "ジャンル:";
+        if(movie_data.containsKey(keyword)){
+            for(Element genre : movie_data.get(keyword).getElementsByTag("a")){
                 genres.add(new Genre(genre.text()));
             }
         }
@@ -239,14 +316,16 @@ public class MissAVParsingProfile extends SiteParsingProfile implements Specific
     @Override
     public ArrayList<Actor> scrapeActors() {
         ArrayList<Actor> actors = new ArrayList<>();
-        if(movie_data.containsKey("Actress:")){
-            for(Element actress : movie_data.get("Actress:").getElementsByTag("a")){
+        String actressKeyword = (scrapingLanguage == Language.ENGLISH) ? "Actress:" : "女優:";
+        if(movie_data.containsKey(actressKeyword)){
+            for(Element actress : movie_data.get(actressKeyword).getElementsByTag("a")){
                 actors.add(new Actor(actress.text(), "", null));
             }
         }
 
-        if(movie_data.containsKey("Actor:")){
-            for(Element actor : movie_data.get("Actor:").getElementsByTag("a")){
+        String actorKeyword = (scrapingLanguage == Language.ENGLISH) ? "Actor:" : "俳優:";
+        if(movie_data.containsKey(actorKeyword)){
+            for(Element actor : movie_data.get(actorKeyword).getElementsByTag("a")){
                 actors.add(new Actor(actor.text(), "", null));
             }
         }
@@ -257,8 +336,9 @@ public class MissAVParsingProfile extends SiteParsingProfile implements Specific
     @Override
     public ArrayList<Director> scrapeDirectors() {
         ArrayList<Director> directors = new ArrayList<>();
-        if(movie_data.containsKey("Director:")){
-            Element directorElement = movie_data.get("Director:");
+        String keyword = (scrapingLanguage == Language.ENGLISH) ? "Director:" : "監督:";
+        if(movie_data.containsKey(keyword)){
+            Element directorElement = movie_data.get(keyword);
             if(directorElement != null){
                 directors.add(new Director(directorElement.text(), null));
             }
@@ -269,13 +349,34 @@ public class MissAVParsingProfile extends SiteParsingProfile implements Specific
     @Nonnull
     @Override
     public Studio scrapeStudio() {
-        if(movie_data.containsKey("Maker:")){
-            Element maker = movie_data.get("Maker:");
+        String keyword = (scrapingLanguage == Language.ENGLISH) ? "Maker:" : "メーカー:";
+        if(movie_data.containsKey(keyword)){
+            Element maker = movie_data.get(keyword);
             if(maker != null){
                 return new Studio(maker.text());
             }
         }
+        String labelKeyword = (scrapingLanguage == Language.ENGLISH) ? "Label:" : "レーベル:";
+        if(movie_data.containsKey(labelKeyword)){
+            Element label = movie_data.get(labelKeyword);
+            if(label != null){
+                return new Studio(label.text());
+            }
+        }
         return Studio.BLANK_STUDIO;
+    }
+
+    @Nonnull
+    @Override
+    public ArrayList<Tag> scrapeTags() {
+        ArrayList<Tag> tags = new ArrayList<>();
+        String keyword = (scrapingLanguage == Language.ENGLISH) ? "Tags:" : "タグ:";
+        if(movie_data.containsKey(keyword)){
+            for(Element tag : movie_data.get(keyword).getElementsByTag("a")){
+                tags.add(new Tag(tag.text()));
+            }
+        }
+        return tags;
     }
 
     @Nonnull
@@ -285,20 +386,24 @@ public class MissAVParsingProfile extends SiteParsingProfile implements Specific
         return createSearchStringFromId(findIDTagFromFile(file, false));
     }
 
+    @Nonnull
     @Override
     public String createSearchString2(File file) {
-		return null;
-	}
+        scrapedMovieFile = file;
+        return createSearchStringFromId2(findIDTagFromFile(file, false));
+    }
 
     @Override
     public String createSearchStringFromId(String id) {
-        return "https://missav.ws/en/" + id;
+        this.id = id;
+        return "https://missav.ws/dm32/" + getUrlLanguageToUse() + "/" + id;
     }
 
     @Override
     public String createSearchStringFromId2(String id) {
-		return null;
-	}
+        this.id = id;
+        return "https://missav.ai/dm32/" + getUrlLanguageToUse() + "/" + id;
+    }
 
     @Override
     public SearchResult[] getSearchResults(String searchString) throws IOException {

@@ -132,8 +132,8 @@ public class AllAmalgamationOrderingPreferences {
 
 		//JAV Preferences
 
-		DataItemSourceAmalgamationPreference overallOrdering = new DataItemSourceAmalgamationPreference(new AV123ParsingProfile(), new JavLibraryParsingProfile(), new AvMooParsingProfile(),
-		        new SquarePlusParsingProfile(), new JavBusParsingProfile(), new ActionJavParsingProfile(), new DmmParsingProfile());
+		DataItemSourceAmalgamationPreference overallOrdering = new DataItemSourceAmalgamationPreference(new AV123ParsingProfile(), new MissAVParsingProfile(), new JavLibraryParsingProfile(),
+		        new AvMooParsingProfile(), new SquarePlusParsingProfile(), new JavBusParsingProfile(), new ActionJavParsingProfile(), new DmmParsingProfile());
 
 		ScraperGroupAmalgamationPreference preferences = new ScraperGroupAmalgamationPreference(ScraperGroupName.JAV_CENSORED_SCRAPER_GROUP, overallOrdering);
 

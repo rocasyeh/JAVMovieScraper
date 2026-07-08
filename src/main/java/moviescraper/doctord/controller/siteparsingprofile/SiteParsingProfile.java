@@ -202,6 +202,36 @@ public abstract class SiteParsingProfile implements DataItemSource {
 	}
 
 	/**
+	 * An already-parsed page provided by the user (e.g. a locally saved HTML file). When set, scraping
+	 * will use this document directly instead of downloading the page. Useful for sites protected by
+	 * bot challenges (Cloudflare, etc.) where the user manually saves the page from their browser.
+	 */
+	protected Document overriddenDocument;
+
+	/**
+	 * @return the user-provided {@link Document} to scrape from, or null if none was set.
+	 */
+	public Document getOverriddenDocument() {
+		return overriddenDocument;
+	}
+
+	public void setOverriddenDocument(Document overriddenDocument) {
+		this.overriddenDocument = overriddenDocument;
+	}
+
+	/**
+	 * Parses a locally saved HTML file into the {@link #overriddenDocument} so scraping can use it
+	 * directly instead of downloading the page over the network.
+	 *
+	 * @param htmlFile the local .html file to parse
+	 * @throws IOException if the file cannot be read
+	 */
+	public void setOverriddenDocumentFromFile(File htmlFile) throws IOException {
+		// charset null lets Jsoup auto-detect from the file's meta tag, falling back to UTF-8.
+		this.overriddenDocument = Jsoup.parse(htmlFile, null);
+	}
+
+	/**
 	 * Gets the ID number from the file and considers stripped out multipart file identifiers like CD1, CD2, etc
 	 * The ID number needs to be the last word in the filename or the next to the last word in the file name if the file name
 	 * ends with something like CD1 or Disc 1
